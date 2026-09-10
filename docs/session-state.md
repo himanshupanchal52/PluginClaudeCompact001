@@ -39,14 +39,18 @@ Hard constraints live in [CLAUDE.md](../CLAUDE.md#hard-constraints) and are not 
 - Merged `feature/project-scaffold` to `main` and pushed.
 - **Milestone 1, part 1: transcript inspected.** Used this project's own session transcript (personal, safe). Findings written up in [transcript-format.md](transcript-format.md).
 
+- **Author's three design decisions taken** (all as recommended): context = prompt + `output_tokens`; dedupe by `requestId`; model the result as a frozen dataclass.
+- **Parser written**: `compact_guard/usage.py` with `ContextUsage`, `iter_entries`, `usage_from_entry`, `read_usage_series`, `latest_usage`, `largest_jump`.
+- **Five fixtures built** (all synthetic): `simple`, `duplicates`, `sidechain`, `malformed`, `empty`. Expected values worked out and verified in [../tests/SUGGESTED_CASES.md](../tests/SUGGESTED_CASES.md).
+- **Behaviour verified** by a throwaway stdlib script — every published expected value confirmed, including coercion, missing-file, dedupe ordering, and drop-handling in `largest_jump`.
+- **Verified against the real transcript**: 45 deduped requests, latest context 104,796 tokens (52.4% of a 200K window), largest jump 5,203.
+
 ### In progress
 
-- **Milestone 1, part 2: the parser.** Awaiting the author's decisions on the three design questions below before any code is written.
+- **Milestone 1, part 3: the tests.** Two worked examples exist in `tests/test_usage.py`; the remaining 9 cases are specified in `tests/SUGGESTED_CASES.md` for the author to write.
+- **Blocked:** `pytest` is not installed on this machine (`python -m pytest` → no module). Needs the author's call on install method (venv vs. global).
 
 ### Next
-
-- Write `usage` parser + unit tests against fixtures, on branch `feature/transcript-parser`.
-- Build a synthetic fixture containing sidechain entries — the `isSidechain` filter is currently untested, since this session spawned no subagents.
 - Decide the state file location: gitignored `.compact-guard/` in the project vs. the session `scratchpad_dir` from hook input.
 - Confirm from the live hooks doc whether to use `PostToolUse` or `PostToolBatch`, and the exact name of the tool-output field on that input. (Milestone 2.)
 

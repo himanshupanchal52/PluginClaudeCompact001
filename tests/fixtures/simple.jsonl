@@ -1,0 +1,4 @@
+{"type":"user","uuid":"u1","message":{"role":"user","content":"hello"}}
+{"type":"assistant","uuid":"a1","requestId":"req_001","timestamp":"2026-09-11T10:00:00.000Z","isSidechain":false,"message":{"role":"assistant","model":"claude-opus-5","usage":{"input_tokens":2,"cache_read_input_tokens":1000,"cache_creation_input_tokens":500,"output_tokens":100}}}
+{"type":"assistant","uuid":"a2","requestId":"req_002","timestamp":"2026-09-11T10:00:10.000Z","isSidechain":false,"message":{"role":"assistant","model":"claude-opus-5","usage":{"input_tokens":2,"cache_read_input_tokens":1600,"cache_creation_input_tokens":400,"output_tokens":200}}}
+{"type":"assistant","uuid":"a3","requestId":"req_003","timestamp":"2026-09-11T10:00:20.000Z","isSidechain":false,"message":{"role":"assistant","model":"claude-opus-5","usage":{"input_tokens":2,"cache_read_input_tokens":2200,"cache_creation_input_tokens":3000,"output_tokens":50}}}

@@ -1,0 +1,10 @@
+
+{not json at all
+[1, 2, 3]
+{"type":"assistant","uuid":"m1","requestId":"req_bad_1","message":"this should be an object"}
+{"type":"assistant","uuid":"m2","requestId":"req_bad_2","message":{"role":"assistant","usage":"this should be an object"}}
+{"type":"assistant","uuid":"m3","requestId":"req_010","timestamp":"2026-09-11T10:00:00.000Z","message":{"role":"assistant","usage":{"input_tokens":500}}}
+{"type":"assistant","uuid":"m4","requestId":"req_011","timestamp":"2026-09-11T10:00:01.000Z","message":{"role":"assistant","usage":{"input_tokens":5,"cache_read_input_tokens":"600","cache_creation_input_tokens":10,"output_tokens":3}}}
+{"type":"assistant","uuid":"m5","requestId":"req_012","timestamp":"2026-09-11T10:00:02.000Z","message":{"role":"assistant","usage":{"input_tokens":1,"cache_read_input_tokens":700.9,"cache_creation_input_tokens":null,"output_tokens":true}}}
+{"type":"assistant","uuid":"m6","timestamp":"2026-09-11T10:00:03.000Z","message":{"role":"assistant","usage":{"input_tokens":10,"cache_read_input_tokens":20,"cache_creation_input_tokens":30,"output_tokens":40}}}
+{"type":"assistant","uuid":"m7","requestId":"req_013","timestamp":"2026-09-11T10:00:04.000Z","message":{"role":"assistant","usage":{"input_toke
