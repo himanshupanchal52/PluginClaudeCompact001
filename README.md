@@ -54,6 +54,20 @@ To be documented precisely before the plugin is packaged (milestone 4), and kept
 
 This project is built with [Claude Code](https://claude.com/claude-code), and the author reviews, understands, and owns every line of it. Claude explains a design and its alternatives first; the author chooses, writes the decision record in their own words, and co-writes the tests. That constraint is the point of the project as much as the plugin is.
 
+## Development setup
+
+The plugin itself has **no dependencies** — Python 3 standard library only. `pytest` is a development dependency, and it lives in a virtual environment so it never becomes something a user of the plugin has to install.
+
+```
+python -m venv .venv
+.venv/Scripts/python -m pip install pytest     # Windows
+.venv/bin/python     -m pip install pytest     # macOS / Linux
+
+.venv/Scripts/python -m pytest -q
+```
+
+Note `python`, not `python3`: on Windows `python3` commonly resolves to a Microsoft Store stub that fails. The reverse is true on most Linux distributions. The hooks handle this at runtime; for local development, use whichever name works on your machine.
+
 ## Development workflow
 
 Work happens on a branch — `feature/<slug>`, `fix/<slug>`, or `docs/<slug>` — never directly on `main`. Tests run on the branch, then it merges to `main`. Every commit is pushed as it is made, so the remote is the running record.

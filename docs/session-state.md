@@ -45,10 +45,11 @@ Hard constraints live in [CLAUDE.md](../CLAUDE.md#hard-constraints) and are not 
 - **Behaviour verified** by a throwaway stdlib script — every published expected value confirmed, including coercion, missing-file, dedupe ordering, and drop-handling in `largest_jump`.
 - **Verified against the real transcript**: 45 deduped requests, latest context 104,796 tokens (52.4% of a 200K window), largest jump 5,203.
 
+- **pytest set up in a venv** (author's choice over a global install). `.venv/Scripts/python -m pytest -q` → **4 passed**. `.venv` was already covered by the existing `.gitignore`.
+
 ### In progress
 
-- **Milestone 1, part 3: the tests.** Two worked examples exist in `tests/test_usage.py`; the remaining 9 cases are specified in `tests/SUGGESTED_CASES.md` for the author to write.
-- **Blocked:** `pytest` is not installed on this machine (`python -m pytest` → no module). Needs the author's call on install method (venv vs. global).
+- **Milestone 1, part 3: the tests.** Two worked examples pass in `tests/test_usage.py`; the remaining 9 cases are specified in `tests/SUGGESTED_CASES.md` **for the author to write**. Branch is not merged until they exist.
 
 ### Next
 - Decide the state file location: gitignored `.compact-guard/` in the project vs. the session `scratchpad_dir` from hook input.
