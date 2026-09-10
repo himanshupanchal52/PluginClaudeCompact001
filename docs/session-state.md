@@ -36,16 +36,19 @@ Hard constraints live in [CLAUDE.md](../CLAUDE.md#hard-constraints) and are not 
 - Rewrote `README.md`: what the plugin is, base layer vs. adaptive layer, constraints, milestone table, "built with Claude Code" statement.
 - Created this file and `docs/decisions/TEMPLATE.md`.
 
+- Merged `feature/project-scaffold` to `main` and pushed.
+- **Milestone 1, part 1: transcript inspected.** Used this project's own session transcript (personal, safe). Findings written up in [transcript-format.md](transcript-format.md).
+
 ### In progress
 
-- Nothing. Awaiting go-ahead on milestone 1.
+- **Milestone 1, part 2: the parser.** Awaiting the author's decisions on the three design questions below before any code is written.
 
 ### Next
 
-- **Milestone 1.** Find a transcript from a personal project (never a work session), inspect it, and confirm the real usage field names. Then write the parser plus unit tests against fixtures.
-  - Blocked on: locating a suitable transcript. Claude Code stores them under `~/.claude/projects/<slugged-path>/*.jsonl`.
+- Write `usage` parser + unit tests against fixtures, on branch `feature/transcript-parser`.
+- Build a synthetic fixture containing sidechain entries — the `isSidechain` filter is currently untested, since this session spawned no subagents.
 - Decide the state file location: gitignored `.compact-guard/` in the project vs. the session `scratchpad_dir` from hook input.
-- Confirm from the live hooks doc whether to use `PostToolUse` or `PostToolBatch`, and the exact name of the tool-output field on that input.
+- Confirm from the live hooks doc whether to use `PostToolUse` or `PostToolBatch`, and the exact name of the tool-output field on that input. (Milestone 2.)
 
 ---
 
@@ -56,6 +59,8 @@ Facts established, so they are not re-derived after a compaction.
 - **Repo:** `T:\dBackupOne\GithubContributions\CompactGuard\PluginClaudeCompact001`, remote `origin` → `https://github.com/himanshupanchal52/PluginClaudeCompact001.git`, default branch `main`.
 - **The Bash tool here mangles quoted heredocs** on multi-line content — the shell wrapper breaks on apostrophes inside them. Use the Write tool for anything longer than a couple of lines.
 - No Python code exists yet. `.gitignore` is the standard GitHub Python template.
+- **Transcript format confirmed against a real file** — see [transcript-format.md](transcript-format.md). The headlines: usage lives at `message.usage` on `type: "assistant"` only; `input_tokens` alone reads as **2** because of prompt caching, so the three input fields must be summed; entries are duplicated 2–3x per `requestId`; `message.context_management` is `null` and unusable; `isSidechain` must be filtered.
+- **Interpreter on this machine:** `python` and `py` both give 3.10.9; `python3` hits the Microsoft Store stub and fails.
 
 ---
 
